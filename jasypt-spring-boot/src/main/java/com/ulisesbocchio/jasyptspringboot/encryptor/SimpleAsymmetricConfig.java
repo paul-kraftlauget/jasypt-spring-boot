@@ -28,7 +28,6 @@ import java.util.Optional;
 @Data
 @NoArgsConstructor
 public class SimpleAsymmetricConfig {
-
     private String privateKey = null;
     private String publicKey = null;
     private String privateKeyLocation = null;
@@ -38,6 +37,10 @@ public class SimpleAsymmetricConfig {
     private ResourceLoader resourceLoader = new DefaultResourceLoader();
     private KeyFormat privateKeyFormat = KeyFormat.DER;
     private KeyFormat publicKeyFormat = KeyFormat.DER;
+    private String providerName = null;
+    private String providerClassName = null;
+    private String asymmetricKeyAlgorithm = "RSA";
+    private String algorithm = "RSA";
 
     private Resource loadResource(Resource asResource, String asString, String asLocation, KeyFormat format, String type) {
         return Optional.ofNullable(asResource)

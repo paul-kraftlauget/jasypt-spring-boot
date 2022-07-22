@@ -85,14 +85,20 @@ public class JasyptEncryptorConfigurationProperties {
 
     /**
      * Encryption/Decryption Algorithm to be used by Jasypt. For more info on how to get available algorithms visit:
-     * <a href="http://www.jasypt.org/cli.html"/>Jasypt CLI Tools Page</a>. Default Value is {@code "PBEWITHHMACSHA512ANDAES_256"}.
-     *
+     * <a href="http://www.jasypt.org/cli.html"/>Jasypt CLI Tools Page</a>.
+     * Default values are:
+     * <ul>
+     * <li>{@code "PBEWITHHMACSHA512ANDAES_256"} for PBE config</li>
+     * <li>{@code "AES/GCM/NoPadding"} for GCM config</li>
+     * <li>{@code "RSA"} for asymmetric config</li>
+     * </ul>
      * @see org.jasypt.encryption.pbe.PBEStringEncryptor
      * @see com.ulisesbocchio.jasyptspringboot.encryptor.SimpleGCMStringEncryptor
      * @see org.jasypt.encryption.pbe.config.StringPBEConfig#getAlgorithm()
      * @see SimpleGCMConfig#getAlgorithm()
+     * @see SimpleAsymmetricConfig#getAlgorithm()
      */
-    private String algorithm = "PBEWITHHMACSHA512ANDAES_256";
+    private String algorithm;
 
     /**
      * Number of hashing iterations to obtain the signing key. Default Value is {@code "1000"}.
@@ -118,6 +124,8 @@ public class JasyptEncryptorConfigurationProperties {
      *
      * @see org.jasypt.encryption.pbe.PBEStringEncryptor
      * @see org.jasypt.encryption.pbe.config.StringPBEConfig#getProviderName()
+     * @see com.ulisesbocchio.jasyptspringboot.encryptor.SimpleAsymmetricStringEncryptor
+     * @see SimpleAsymmetricConfig#getProviderName()
      */
     private String providerName = null;
 
@@ -127,6 +135,8 @@ public class JasyptEncryptorConfigurationProperties {
      *
      * @see org.jasypt.encryption.pbe.PBEStringEncryptor
      * @see org.jasypt.encryption.pbe.config.SimpleStringPBEConfig#setProviderClassName(String)
+     * @see com.ulisesbocchio.jasyptspringboot.encryptor.SimpleAsymmetricStringEncryptor
+     * @see SimpleAsymmetricConfig#setProviderClassName(String) 
      */
     private String providerClassName = null;
 
@@ -206,6 +216,15 @@ public class JasyptEncryptorConfigurationProperties {
      * @see SimpleAsymmetricConfig#getPublicKeyFormat()
      */
     private KeyFormat publicKeyFormat = KeyFormat.DER;
+
+    /**
+     * Specify the key algorithm for the asymmetric cryptography (for example RSA or EC).
+     * RSA is the default algorithm.
+     *
+     * @see com.ulisesbocchio.jasyptspringboot.encryptor.SimpleAsymmetricStringEncryptor
+     * @see SimpleAsymmetricConfig#getAsymmetricKeyAlgorithm()
+     */
+    private String asymmetricKeyAlgorithm = "RSA";
 
     /**
      * Specify a secret key String in base64 for the GCM Algorithm

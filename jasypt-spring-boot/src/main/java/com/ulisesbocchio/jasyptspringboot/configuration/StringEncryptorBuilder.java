@@ -50,7 +50,7 @@ public class StringEncryptorBuilder {
 
     private StringEncryptor createGCMDefault() {
         SimpleGCMConfig config = new SimpleGCMConfig();
-//        config.setAlgorithm(get(configProps::getAlgorithm, propertyPrefix + ".algorithm", "AES/GCM/NoPadding"));
+        config.setAlgorithm(get(configProps::getAlgorithm, propertyPrefix + ".algorithm", "AES/GCM/NoPadding"));
         config.setSecretKey(get(configProps::getGcmSecretKeyString, propertyPrefix + ".gcm-secret-key-string", null));
         config.setSecretKeyLocation(get(configProps::getGcmSecretKeyLocation, propertyPrefix + ".gcm-secret-key-location", null));
         config.setSecretKeyPassword(get(configProps::getGcmSecretKeyPassword, propertyPrefix + ".gcm-key-password", null));
@@ -69,6 +69,10 @@ public class StringEncryptorBuilder {
         config.setPublicKey(get(configProps::getPublicKeyString, propertyPrefix + ".public-key-string", null));
         config.setPublicKeyLocation(get(configProps::getPublicKeyLocation, propertyPrefix + ".public-key-location", null));
         config.setPublicKeyFormat(get(configProps::getPublicKeyFormat, propertyPrefix + ".public-key-format", AsymmetricCryptography.KeyFormat.DER));
+        config.setProviderName(get(configProps::getProviderName, propertyPrefix + ".provider-name", null));
+        config.setProviderClassName(get(configProps::getProviderClassName, propertyPrefix + ".provider-class-name", null));
+        config.setAsymmetricKeyAlgorithm(get(configProps::getAsymmetricKeyAlgorithm, propertyPrefix + ".asymmetric-key-algorithm", "RSA"));
+        config.setAlgorithm(get(configProps::getAlgorithm, propertyPrefix + ".algorithm", "RSA"));
         return new SimpleAsymmetricStringEncryptor(config);
     }
 

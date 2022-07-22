@@ -652,7 +652,7 @@ The following are the configuration properties you can use to config asymmetric 
           <td>Key</td><td>Default Value</td><td>Description</td>
       </tr>
       <tr>
-          <td>jasypt.encryptor.privateKeyString</td><td>null</td><td> private key for decryption in String format</td>
+          <td>jasypt.encryptor.privateKeyString</td><td>null</td><td> private key for decryption in String format (PKCS8)</td>
       </tr>
       <tr>
           <td>jasypt.encryptor.privateKeyLocation</td><td>null</td><td>location of the private key for decryption in spring resource format</td>
@@ -660,6 +660,19 @@ The following are the configuration properties you can use to config asymmetric 
       <tr>
           <td>jasypt.encryptor.privateKeyFormat</td><td>DER</td><td>Key format. DER or PEM</td>
       </tr>
+      <tr>
+          <td>jasypt.encryptor.providerName</td><td>null</td><td>The provider for the encryption keys and ciphers</td>
+      </tr>
+      <tr>
+          <td>jasypt.encryptor.providerClassName</td><td>null</td><td>The class name for the provider to install if not installed</td>
+      </tr>
+      <tr>
+          <td>jasypt.encryptor.asymmetricKeyAlgorithm</td><td>RSA</td><td>The public/private key algorithm, for example RSA or EC</td>
+      </tr>
+      <tr>
+          <td>jasypt.encryptor.algorithm</td><td>RSA</td><td>The algorithm to use in the cipher, for example RSA or ECIES (ECIES requires Bouncy Castle provider)</td>
+      </tr>
+
   </table>
   
   You should either use `privateKeyString` or `privateKeyLocation`, the String format takes precedence if set.
